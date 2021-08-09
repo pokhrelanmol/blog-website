@@ -1,0 +1,15 @@
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+html{
+	font-size: 10px;
+}
+body{
+	font-family: 'Poppins', sans-serif;
+	font-size: 1.6rem;
+	height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}

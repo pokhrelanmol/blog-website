@@ -1,0 +1,35 @@
+
+.single-blog-container{
+	max-width: 900px;
+	margin: 0 auto;
+}
+.single-blog-wrapper{
+	width: 900px;
+	display: flex;
+	flex-direction: column;
+}
+
+.feature-image{
+ width:auto;
+ height:500px;
+ border: 1px solid #ddd;
+  border-radius: 14px;
+	margin-top: 5rem;
+  padding: 5px;
+}
+.single-blog-title{
+line-height: 37px;
+letter-spacing: 3px;
+  color: rgb(66, 65, 65);
+  text-transform: capitalize;
+
+
+}
+.single-blog-body{
+   margin-top: 2rem;
+	 font-weight: 500;
+	 line-height: 30px;
+	 letter-spacing: .5px;
+	 font-size: 1.7rem;
+  color: rgba(117, 117, 117, 1);
+}

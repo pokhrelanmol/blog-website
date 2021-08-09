@@ -1,0 +1,93 @@
+.blog-wrapper {
+  max-width: 90.9rem;
+  margin: 0 auto;
+  display: grid;
+  align-content: center;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 6rem;
+  min-height: 35vh;
+  place-items: center;
+  background-color: rebeccapurplej;
+}
+.post-wrapper {
+  min-width: 45.4rem;
+  height: fit-content;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+
+.post-wrapper .content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 19px;
+  -webkit-line-clamp: 4;
+   letter-spacing: 0.5px;
+  text-transform: capitalize;
+  -webkit-box-orient: vertical;
+}
+.post-wrapper .title .Link {
+  text-decoration: none;
+  color: rgba(41, 41, 41, 1);
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  line-height: 28px;
+}
+.post-wrapper .title .Link:hover {
+  cursor: pointer;
+  color: rgb(88, 88, 88);
+}
+.post-wrapper .content {
+  color: rgba(117, 117, 117, 1);
+}
+.post-wrapper img{
+  width: 440px;
+  height: 300px;
+	cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 1rem;
+}
+.post-wrapper img:hover{
+
+  transform: scale(1.02);
+}
+
+.recent-posts {
+  text-align: center;
+  margin-top: 3rem;
+  margin-left: 11rem;
+  text-decoration: underline solid gray 2px;
+}
+/* responsive design */
+@media (max-width: 850px) {
+  .blog-wrapper {
+    max-width: 90.9rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 6rem;
+    min-height: 35vh;
+    place-items: center;
+  }
+  .post-wrapper {
+    min-width: 35.4rem;
+    height: fit-content;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .recent-posts {
+    margin-top: 0;
+  }
+	.post-wrapper .title .Link{
+    width: 350px;
+    padding:10px 10px;
+  }
+
+}

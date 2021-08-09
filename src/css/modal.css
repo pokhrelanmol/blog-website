@@ -1,0 +1,72 @@
+.modal-wrapper {
+  display: flex;
+}
+.add-post {
+
+     margin-top: 1rem;
+  padding: 7px 20px 9px;
+  border-radius: 99em;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid gray;
+  float: right;
+   font-weight: 600;
+  margin-right: 3rem;
+
+
+}
+.add-post:hover {
+  background-color: rgb(240, 236, 236);
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vmax;
+  min-height: 60vh;
+}
+.close-btn {
+  float: right;
+  padding: 7px 10px;
+	font-weight: 400;
+	cursor: pointer;
+}
+form input {
+  width: 80%;
+  border-bottom: 1px solid grey;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  outline: none;
+  margin: 1rem;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+form textarea {
+  width: 80%;
+  height: 100%;
+  border: none;
+  outline: none;
+  margin: 1rem;
+  padding: 1rem 3rem;
+}
+.post{
+  padding: 7px 24px 9px;
+	cursor: pointer;
+	
+	font-weight: 400;
+}
+@media(max-width:500px){
+  .add-post{
+  padding: 5px 8px;
+  border-radius: 99em;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid gray;
+  float: right;
+  font-weight: 400;
+
+  }
+}
