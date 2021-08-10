@@ -1,6 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer, useState } from "react";
 export const BlogContext = createContext("");
-export default function BlogProvider({ children }) {
+
   let contents = new Array(8).fill({
     title:
       " Stackoverflow survey chooses Javascript as a No.1 Language for web",
@@ -19,14 +19,30 @@ export default function BlogProvider({ children }) {
   contents = contents.map((content, id) => {
     return { ...content, title: `${id + 1}. ` + content.title };
   });
-  const [addItem, setAddItem] = useState([...contents]);
-  const paintContent = (userInput) => {
-    setAddItem([userInput, ...addItem]);
-  };
+
+  export const actionTypes = {
+    add:"ADD_BLOG"
+  }
+
+export default function BlogProvider({ children }) {
+const [blogs,dispatch] = useReducer((state,action)=>{
+  switch(action.type){
+    case actionTypes.add:
+   return [action.payload,...state]
+   default:
+     return state
+  }
+},[...contents])
+ 
+ 
+// const [addItem, setAddItem] = useState();
+//   const paintContent = (userInput) => {
+//     setAddItem([userInput, ...addItem]);
+//   };
 
   return (
     <>
-      <BlogContext.Provider value={{ addItem, setAddItem, paintContent }}>
+      <BlogContext.Provider value={{blogs,dispatch}}>
         {children}
       </BlogContext.Provider>
     </>

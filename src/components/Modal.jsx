@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Modal from "react-modal";
 import "../css/modal.css";
 import { BlogContext } from "./CreatePosts";
+import {actionTypes} from './CreatePosts'
 const customStyles = {
   content: {
     top: "50%",
@@ -16,7 +17,7 @@ const customStyles = {
 // modal
 Modal.setAppElement(document.querySelector(".nav-container"));
 function ModalComponent(props) {
-  const {paintContent} = useContext(BlogContext)
+  const {blogs,dispatch} = useContext(BlogContext)
   const [userInput, setUserInput] = useState({
     title: "",
     body: "",
@@ -39,8 +40,7 @@ function ModalComponent(props) {
     setIsOpen(false);
   }
   const clickEvent = () => {
-    // paint content is comming from context 
-    paintContent(userInput);
+    dispatch({type:actionTypes.add,payload:userInput})
     setUserInput({
       title: "",
       body: "",
@@ -79,6 +79,7 @@ function ModalComponent(props) {
                 onChange={inputEvent}
                 value={userInput.body}
               />
+              <input type="file" name="myImage" accept="image/x-png,image/gif,image/jpeg" />
               <button className="post" onClick={() => clickEvent()}>
                 Post              </button>
             </form>
