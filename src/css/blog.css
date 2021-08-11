@@ -62,8 +62,26 @@
   margin-left: 11rem;
   text-decoration: underline solid gray 2px;
 }
+.post-wrapper .delete{
+  max-width: 6rem; 
+     margin-top: 1rem;
+  padding:.5rem .8rem;
+  border-radius: 99em;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid gray;
+  float: right;
+   font-weight: 600;
+  margin-right: 3rem;
+
+
+}
+.post-wrapper .delete:hover{
+
+  background-color: rgb(240, 236, 236);
+}
 /* responsive design */
-@media (max-width: 850px) {
+@media (max-width: 800px) {
   .blog-wrapper {
     max-width: 90.9rem;
     margin: 0 auto;
@@ -88,6 +106,11 @@
 	.post-wrapper .title .Link{
     width: 350px;
     padding:10px 10px;
+  }
+  .post-wrapper img{
+    min-width: 100%;
+    height: 300px;
+    
   }
 
 }

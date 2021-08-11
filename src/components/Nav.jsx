@@ -5,14 +5,13 @@ import { UserContext } from "./GlobalContext";
 
 const Nav = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   const { user } = useContext(UserContext);
   return (
     <>
       <div className="nav-container">
-        <h2 className=" brand">
-          <Link to="/">Brand</Link>
+        <h2 >
+          <Link className = "brand" to="/"> Blog</Link>
         </h2>
         {pathname && pathname.includes("login") ? null : (
           <ul>
@@ -30,15 +29,16 @@ const Nav = () => {
         )}
         {user ? (
           <>
-            <Link to="/login" className="logout">
+            <Link to="/" className="logout">
               Logout
             </Link>
 
             <h4> Hi, {user}</h4>
           </>
         ) : (
+
           <Link to="/login" className="logout">
-            Login
+            Login to Start Posting
           </Link>
         )}
       </div>

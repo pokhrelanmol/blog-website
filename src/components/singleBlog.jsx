@@ -4,13 +4,13 @@ import { BlogContext } from "./CreatePosts";
 import "../css/singleBlog.css";
 const SingleBlog = () => {
   const { id } = useParams();
-  const { addItem } = useContext(BlogContext);
+  const { blogs} = useContext(BlogContext);
   return (
     <div className="single-blog-container">
       <div className="single-blog-wrapper">
-        <img src={addItem[id].image} className="feature-image" />
-        <h1 className="single-blog-title">{addItem[id].title}</h1>
-        <div className="single-blog-body">{addItem[id].body}</div>
+        <img src={blogs[id].image} className="feature-image" />
+        <h1 className="single-blog-title">{blogs[id].title}</h1>
+        <div className="single-blog-body">{blogs[id].body}</div>
       </div>
     </div>
   );

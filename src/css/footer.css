@@ -1,8 +1,11 @@
-footer{
- background-color: rgb(243, 237, 228);	
-	height: 42px;
-	text-align: center;
-	padding: 1rem 0;
-	line-height: 21px;
-	margin-top: 2rem;
+footer {
+  background-color: rgb(243, 237, 228);
+  height: 42px;
+  padding: 1rem 0;
+	position: sticky;
+	top: 100%;
+}
+footer p {
+  text-align: center;
+  line-height: 21px;
 }

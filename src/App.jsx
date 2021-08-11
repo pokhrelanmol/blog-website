@@ -12,17 +12,21 @@ import BlogProvider from "./components/CreatePosts";
 import Footer from "./components/Footer";
 const App = () => {
   return (
+    <>
     <BrowserRouter>
 
       <UserProvider>
         <BlogProvider>
+
           <Nav />
           <Switch>
             <Route exact path="/contact">
               <Contact />
             </Route>
             <Route path="/login" component={Login}/>
+            
             <Route exact path="/">
+        
               <ModalComponent />
               <Blog />
             </Route>
@@ -30,10 +34,13 @@ const App = () => {
               <SingleBlog />
             </Route>
           </Switch>
+
         </BlogProvider>
       </UserProvider>
-      <Footer />
     </BrowserRouter>
+
+      <Footer />
+</>
   );
 };
 
