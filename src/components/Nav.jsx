@@ -29,7 +29,7 @@ const Nav = () => {
         )}
         {user ? (
           <>
-            <Link to="/" className="logout">
+            <Link to="/login" className="logout">
               Logout
             </Link>
 

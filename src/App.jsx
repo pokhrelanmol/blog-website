@@ -13,34 +13,30 @@ import Footer from "./components/Footer";
 const App = () => {
   return (
     <>
-    <BrowserRouter>
+      <BrowserRouter>
+        <UserProvider>
+          <BlogProvider>
+            <Nav />
+            <Switch>
+              <Route exact path="/contact">
+                <Contact />
+              </Route>
+              <Route path="/login" component={Login} />
 
-      <UserProvider>
-        <BlogProvider>
-
-          <Nav />
-          <Switch>
-            <Route exact path="/contact">
-              <Contact />
-            </Route>
-            <Route path="/login" component={Login}/>
-            
-            <Route exact path="/">
-        
-              <ModalComponent />
-              <Blog />
-            </Route>
-            <Route exact path="/blog/:id">
-              <SingleBlog />
-            </Route>
-          </Switch>
-
-        </BlogProvider>
-      </UserProvider>
-    </BrowserRouter>
+              <Route exact path="/">
+                <ModalComponent />
+                <Blog />
+              </Route>
+              <Route exact path="/blog/:id">
+                <SingleBlog />
+              </Route>
+            </Switch>
+          </BlogProvider>
+        </UserProvider>
+      </BrowserRouter>
 
       <Footer />
-</>
+    </>
   );
 };
 

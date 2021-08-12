@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useState } from "react";
+import React, { createContext, useReducer } from "react";
 export const BlogContext = createContext("");
 
 let contents = new Array(8).fill({
@@ -31,36 +31,31 @@ let contents = new Array(8).fill({
 // };
 
 contents = contents.map((content, id) => {
-  return { ...content, id :id,title: `${id + 1}. ` + content.title };
+  return { ...content, id: id, title: `${id + 1}. ` + content.title };
 });
 
 export const actionTypes = {
   add: "ADD_BLOG",
-  delete:"DELETE_POST"
+  delete: "DELETE_POST",
 };
 
 export default function BlogProvider({ children }) {
   const [blogs, dispatch] = useReducer(
-(state, action) => {
+    (state, action) => {
       switch (action.type) {
-
         case actionTypes.add:
           // contents.unshift(action.payload);
           //  addToLocalStorage();
-          return [{...action.payload, id:state.length+1}, ...state];
-      case actionTypes.delete:
-        return[...state.filter((blog)=> blog.id!==action.payload)]
+          return [{ ...action.payload, id: state.length + 1 }, ...state];
+        case actionTypes.delete:
+          return [...state.filter((blog) => blog.id !== action.payload)];
         default:
           return state;
       }
     },
     // [...(getLocalStorageData() || contents)]
     [...contents]
-
   );
-
-  
- console.log(blogs)
 
   return (
     <>

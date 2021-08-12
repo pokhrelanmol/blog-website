@@ -5,19 +5,21 @@ import "../css/blog.css";
 import { BlogContext } from "./CreatePosts";
 import { UserContext } from "./GlobalContext";
 const Blog = () => {
-  const {blogs,dispatch} = useContext(BlogContext);
+  const { blogs, dispatch } = useContext(BlogContext);
   const { user } = useContext(UserContext);
-  
+
   return (
     <div className="blog-container">
       <div className="blog-wrapper">
         {blogs.map((item, indx) => {
           return (
-            <div key={indx}   className="post-wrapper">
+            <div key={indx} className="post-wrapper">
               <img src={blogs[indx].image} alt="thumbnail" />
               <div className="title">
-                 <Link className = "Link" to={`/blog/${indx}`}><h2> {blogs[indx].title}</h2> </Link>
-    </div>
+                <Link className="Link" to={`/blog/${indx}`}>
+                  <h2> {blogs[indx].title}</h2>{" "}
+                </Link>
+              </div>
               <div className="content">{blogs[indx].body}</div>
               <Link to={`/blog/${indx}`}> load more</Link>
               <div className="author">
@@ -27,13 +29,22 @@ const Blog = () => {
                   </>
                 )}
               </div>
-              <button className="delete" onClick = {()=>dispatch({type:actionTypes.delete,payload:item.id})}> Delete</button>
-              <button className = "delete"> edit</button>
+              <button
+                className="delete"
+                onClick={() =>
+                  dispatch({ type: actionTypes.delete, payload: item.id })
+                }
+              >
+                Delete
+              </button>
+              <button className="delete" onClick={() => {}}>
+                edit
+              </button>
             </div>
           );
         })}
       </div>
     </div>
   );
-}
+};
 export default Blog;
