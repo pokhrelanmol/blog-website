@@ -4,7 +4,7 @@ import { BlogContext } from "./CreatePosts";
 import "../css/singleBlog.css";
 const SingleBlog = () => {
   const { id } = useParams();
-  const { blogs} = useContext(BlogContext);
+  const {state:{ blogs}} = useContext(BlogContext);
   return (
     <div className="single-blog-container">
       <div className="single-blog-wrapper">

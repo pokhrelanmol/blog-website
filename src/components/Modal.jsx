@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 import "../css/modal.css";
 import { BlogContext } from "./CreatePosts";
@@ -17,13 +17,22 @@ const customStyles = {
 
 // modal
 Modal.setAppElement(document.querySelector("#root"));
-function ModalComponent() {
-  const { blogs, dispatch } = useContext(BlogContext);
+function ModalComponent({ text, blogId }) {
+  const { state:{blogs,blogToEdit}, dispatch, } = useContext(BlogContext);
   const { user } = useContext(UserContext);
   const [userInput, setUserInput] = useState({
     title: "",
     body: "",
+    image:""
   });
+ 
+  const[blog,setBlog] = useState({title: "",body: "", id: "", })
+ useEffect(()=>{
+ if(blogToEdit){
+   setBlog(blogToEdit)
+ }
+ },[blogToEdit])
+
   const inputEvent = (e) => {
     let { name, value } = e.target;
     setUserInput({
@@ -31,7 +40,13 @@ function ModalComponent() {
       [name]: value,
     });
   };
-
+ const handleEdit = (e) => {
+ setBlog({...blog,[e.target.name]:e.target.value})
+  };
+  const openModalForEdit = () => {
+    setIsOpen(true);
+    dispatch({ type: actionTypes.edit, payload: blogId });
+  };
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
@@ -39,27 +54,35 @@ function ModalComponent() {
   function closeModal() {
     setIsOpen(false);
   }
+
   const handlePost = () => {
     dispatch({ type: actionTypes.add, payload: userInput });
     setUserInput({
       title: "",
       body: "",
+      image:""
     });
     setIsOpen(false);
   };
+  const handleUpdate =()=>{
+   dispatch({type:actionTypes.update,payload:{blog,blogId:blog.id}})
+    setIsOpen(false);
+  }
   if (user) {
     return (
       <div>
         <div>
-          <button onClick={openModal} className="add-post">
-            Add Post
+          <button
+            onClick={text == "edit" ? openModalForEdit : openModal}
+            className="add-post"
+          >
+            {text}
           </button>
           <div className="modal-wrapper">
             <Modal
               isOpen={modalIsOpen}
               onRequestClose={closeModal}
               style={customStyles}
-              contentLabel="Example Modal"
             >
               <button onClick={closeModal} className="close-btn">
                 close
@@ -68,8 +91,8 @@ function ModalComponent() {
                 <input
                   name="title"
                   placeholder="Title"
-                  onChange={inputEvent}
-                  value={userInput.title}
+                  onChange={ text ==='edit'?handleEdit:inputEvent}
+                  value={ text === "edit"?blog.title:userInput.title}
                 />
                 <textarea
                   name="body"
@@ -77,11 +100,16 @@ function ModalComponent() {
                   cols=""
                   rows="10"
                   placeholder="content"
-                  onChange={inputEvent}
-                  value={userInput.body}
+                  onChange={text ==='edit'?handleEdit:inputEvent}
+                  value={ text === "edit"?blog.body:userInput.body}
                 />
-                <button className="post" onClick={() => handlePost()}>
-                  Post
+                <button
+                  className="post"
+                  onClick={() => {
+                    text === "Add Post" ? handlePost() :handleUpdate();
+                  }}
+                >
+                  {text === "edit" ? "update" : " post"}
                 </button>
               </form>
             </Modal>

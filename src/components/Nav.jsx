@@ -10,8 +10,14 @@ const Nav = () => {
   return (
     <>
       <div className="nav-container">
-        <h2 >
-          <Link className = "brand" to="/"> Blog</Link>
+        <h2>
+          <Link className="brand" to="/">
+            <img
+               className="logo"  
+              src="https://cdn.logo.com/hotlink-ok/logo-social.png"
+              alt="logo"
+            />
+          </Link>
         </h2>
         {pathname && pathname.includes("login") ? null : (
           <ul>
@@ -36,7 +42,6 @@ const Nav = () => {
             <h4> Hi, {user}</h4>
           </>
         ) : (
-
           <Link to="/login" className="logout">
             Login to Start Posting
           </Link>

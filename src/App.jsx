@@ -24,7 +24,7 @@ const App = () => {
               <Route path="/login" component={Login} />
 
               <Route exact path="/">
-                <ModalComponent />
+                <ModalComponent text={"Add Post"} />
                 <Blog />
               </Route>
               <Route exact path="/blog/:id">

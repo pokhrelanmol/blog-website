@@ -1,4 +1,9 @@
 import { React } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-ReactDOM.render(<App />, document.getElementById("root"));
+import BlogProvider from "./components/CreatePosts";
+ReactDOM.render(
+<BlogProvider>
+	<App />
+</BlogProvider>
+, document.getElementById("root"));

@@ -4,14 +4,19 @@ import { actionTypes } from "./CreatePosts";
 import "../css/blog.css";
 import { BlogContext } from "./CreatePosts";
 import { UserContext } from "./GlobalContext";
+import ModalComponent from "./Modal";
 const Blog = () => {
-  const { blogs, dispatch } = useContext(BlogContext);
+  const {
+    state: { blogs },
+    dispatch,
+  } = useContext(BlogContext);
   const { user } = useContext(UserContext);
-
+console.log(blogs)
   return (
     <div className="blog-container">
       <div className="blog-wrapper">
         {blogs.map((item, indx) => {
+          
           return (
             <div key={indx} className="post-wrapper">
               <img src={blogs[indx].image} alt="thumbnail" />
@@ -37,9 +42,7 @@ const Blog = () => {
               >
                 Delete
               </button>
-              <button className="delete" onClick={() => {}}>
-                edit
-              </button>
+              <ModalComponent text="edit" blogId={indx} />
             </div>
           );
         })}

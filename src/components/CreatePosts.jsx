@@ -1,6 +1,5 @@
 import React, { createContext, useReducer } from "react";
-export const BlogContext = createContext("");
-
+export const BlogContext = createContext({ state: { blogs: [] } });
 let contents = new Array(8).fill({
   title: " Stackoverflow survey chooses Javascript as a No.1 Language for web",
   body: `According to the 
@@ -16,50 +15,62 @@ let contents = new Array(8).fill({
          `,
   image: "https://random.imagecdn.app/500/700",
 });
-
-// const addToLocalStorage = () => {
-//   localStorage.setItem("posts", JSON.stringify([...contents]));
-// };
-// const getLocalStorageData = () => {
-//   const allPost = JSON.parse(localStorage.getItem("posts"));
-//   if(allPost === null){
-
-//   localStorage.setItem("posts", JSON.stringify([...contents]));
-//   }
-
-//   return allPost;
-// };
-
 contents = contents.map((content, id) => {
   return { ...content, id: id, title: `${id + 1}. ` + content.title };
 });
+let initialState = {
+  blogs: [...contents],
+  blogToEdit: null,
+};
 
 export const actionTypes = {
   add: "ADD_BLOG",
   delete: "DELETE_POST",
+  edit:"EDIT-BLOG",
+  update:"UPDATE BLOG"
+
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case actionTypes.add:
+      return {
+        ...state,
+        blogs: [
+          { ...action.payload, id: state.blogs.length + 1 },
+          ...state.blogs,
+        ],
+      };
+    case actionTypes.delete:
+      return {
+ ...state,
+        blogs: [...state.blogs.filter((blog) => blog.id !== action.payload)],
+      };
+      case actionTypes.edit:
+         const blogToEdit = state.blogs.find((blog) => blog.id === action.payload);
+      return { ...state, blogToEdit };
+      case actionTypes.update:
+
+   return {
+     ...state,
+   blogs: state.blogs.map((blog)=>{
+     if(blog.id === action.payload.blogId){
+       blog = action.payload.blog
+     }
+     return blog
+   })
+   }
+    default:
+      return state;
+  }
+
 };
 
 export default function BlogProvider({ children }) {
-  const [blogs, dispatch] = useReducer(
-    (state, action) => {
-      switch (action.type) {
-        case actionTypes.add:
-          // contents.unshift(action.payload);
-          //  addToLocalStorage();
-          return [{ ...action.payload, id: state.length + 1 }, ...state];
-        case actionTypes.delete:
-          return [...state.filter((blog) => blog.id !== action.payload)];
-        default:
-          return state;
-      }
-    },
-    // [...(getLocalStorageData() || contents)]
-    [...contents]
-  );
-
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
-      <BlogContext.Provider value={{ blogs, dispatch }}>
+      <BlogContext.Provider value={{ state, dispatch }}>
         {children}
       </BlogContext.Provider>
     </>
