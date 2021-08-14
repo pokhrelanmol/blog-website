@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 import "../css/modal.css";
 import { BlogContext } from "./CreatePosts";
@@ -18,15 +18,14 @@ const customStyles = {
 // modal
 Modal.setAppElement(document.querySelector("#root"));
 function ModalComponent({ text, blogId }) {
-  const { state:{blogs,blogToEdit}, dispatch, } = useContext(BlogContext);
+  const { state:{blogs,blogToEdit}, dispatch } = useContext(BlogContext);
   const { user } = useContext(UserContext);
   const [userInput, setUserInput] = useState({
     title: "",
     body: "",
-    image:""
   });
  
-  const[blog,setBlog] = useState({title: "",body: "", id: "", })
+  const[blog,setBlog] = useState({title: "",body: "" })
  useEffect(()=>{
  if(blogToEdit){
    setBlog(blogToEdit)
@@ -60,7 +59,6 @@ function ModalComponent({ text, blogId }) {
     setUserInput({
       title: "",
       body: "",
-      image:""
     });
     setIsOpen(false);
   };

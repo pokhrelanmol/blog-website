@@ -59,13 +59,16 @@
 .recent-posts {
   text-align: center;
   margin-top: 3rem;
-  margin-left: 11rem;
+  /* margin-left: 7rem; */
+  font-size: large;
+  font-weight: bold;
   text-decoration: underline solid gray 2px;
 }
 .post-wrapper .delete{
   max-width: 6rem; 
-     margin-top: 1rem;
-  padding:.5rem .8rem;
+     margin-top: 2rem;
+  padding: .8rem 1rem ;
+
   border-radius: 99em;
   cursor: pointer;
   background-color: white;
@@ -73,6 +76,7 @@
   float: right;
    font-weight: 600;
   margin-right: 3rem;
+  margin-bottom: 1rem;
 
 
 }

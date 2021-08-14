@@ -2,17 +2,15 @@
   display: flex;
 }
 .add-post {
-
-     margin-top: 1rem;
-  padding: 7px 20px 9px;
+  margin-top:1rem;
+  padding: .8rem 1rem ;
   border-radius: 99em;
   cursor: pointer;
   background-color: white;
   border: 1px solid gray;
   float: right;
    font-weight: 600;
-  margin-right: 3rem;
-
+ margin-right: 3rem;
 
 }
 .add-post:hover {

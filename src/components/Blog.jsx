@@ -11,9 +11,10 @@ const Blog = () => {
     dispatch,
   } = useContext(BlogContext);
   const { user } = useContext(UserContext);
-console.log(blogs)
   return (
     <div className="blog-container">
+
+      <div className="recent-posts">Recent Post</div>
       <div className="blog-wrapper">
         {blogs.map((item, indx) => {
           
@@ -34,7 +35,10 @@ console.log(blogs)
                   </>
                 )}
               </div>
+       <div style={{display:"flex",alignItems:"center"}}>
+
               <button
+              style={{marginBottom:"1rem"}}
                 className="delete"
                 onClick={() =>
                   dispatch({ type: actionTypes.delete, payload: item.id })
@@ -43,6 +47,8 @@ console.log(blogs)
                 Delete
               </button>
               <ModalComponent text="edit" blogId={indx} />
+
+       </div>
             </div>
           );
         })}
